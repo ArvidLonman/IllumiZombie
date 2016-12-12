@@ -1,4 +1,4 @@
-var sketch = function(processingInstance){ with (processingInstance){
+﻿var sketch = function(processingInstance){ with (processingInstance){
 
 size(1000, 700);
 
@@ -153,9 +153,50 @@ keyIsPressed = -1;
 
 
 
+var mouseIsPressed = false;
+
+var mousePressed = function(){
+
+mouseIsPressed = true;
+
+};
+var mouseReleased = function(){
+
+mouseIsPressed = false;
+
+};
+
+
+var drawLazer = function(){
+	
+	
+	if(mouseIsPressed){
+	fill(255,0,0);
+	stroke(255,0,0);
+	strokeWeight(2);
+	line(width/2,height-175,mouseX,mouseY);
+	}
+	
+	
+};
+
+
+
 draw = function() {
 	
-  
+	if (liv <=0 ){
+		alert("Illuminati tabte verdensherredømmet til zombierne! Prøv igen.");
+		liv = 10;
+		ninja.sticks = 0;
+		Zombies = [];
+
+		for (var i = 0;i<50;i++) {
+			Zombies.push(new Zombie(random(-4000,0), groundY,1));
+			Zombies.push(new Zombie(random(1000,5000), groundY,-1));
+		}
+	}
+	
+
     noStroke();
     background(9, 222, 194);
     fill(14, 232, 14);
@@ -204,7 +245,7 @@ draw = function() {
 	
 	 if (Zombies[i].x > midten-25 && Zombies[i].x < midten+25) {
 
-	if (Zombies [i].retning === 1) {
+	 if (Zombies [i].retning === 1) {
 		Zombies[i].x = -1000;
 	  }else {
 		  Zombies[i].x = width + 1000;
@@ -222,6 +263,7 @@ draw = function() {
      
   }
   
+  drawLazer();
   
 	
 };
